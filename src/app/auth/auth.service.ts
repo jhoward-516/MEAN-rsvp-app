@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AUTH_CONFIG } from './auth.config';
 import * as auth0 from 'auth0-js';
+import {isNullOrUndefined} from 'util';
 
 // Avoid name not found warnings
 declare var auth0: any;
@@ -22,19 +23,17 @@ export class AuthService {
   // Create a stream of logged in status to communicate through app
   loggedIn: boolean;
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
+  isAdmin: boolean;
 
   constructor(private router: Router) {
     // If authenticated, set local profile property
     // and update login status subject.
     // If not authenticated but there are still items
     // in localStorage, log out.
-    const lsProfile = localStorage.getItem('profile');
-
     if (this.tokenValid) {
-      this.userProfile = JSON.parse(lsProfile);
+      this.userProfile = JSON.parse(localStorage.getItem('profile'));
+      this.isAdmin = localStorage.getItem('isAdmin') === 'true';
       this.setLoggedIn(true);
-    } else if (!this.tokenValid && lsProfile) {
-      this.logout();
     }
   }
 
@@ -82,8 +81,17 @@ export class AuthService {
     localStorage.setItem('expires_at', expiresAt);
     localStorage.setItem('profile', JSON.stringify(profile));
     this.userProfile = profile;
+
+    this.isAdmin = this._checkAdmin(profile);
+    localStorage.setItem('isAdmin', this.isAdmin.toString());
     // Update login status in loggedIn$ stream
     this.setLoggedIn(true);
+  }
+
+  private _checkAdmin(profile) {
+    // Check if the user has admin role
+    const roles = profile[AUTH_CONFIG.NAMESPACE] || [];
+    return roles.indexOf('admin') > -1;
   }
 
   logout() {
@@ -92,8 +100,10 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
     localStorage.removeItem('authRedirect');
+    localStorage.removeItem('isAdmin');
     // Reset local properties, update loggedIn$ stream
     this.userProfile = undefined;
+    this.isAdmin = undefined;
     this.setLoggedIn(false);
     // Return to homepage
     this.router.navigate(['/']);

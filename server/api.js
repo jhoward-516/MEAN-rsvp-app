@@ -15,7 +15,7 @@ const jwks = require('jwks-rsa');
 
 module.exports = function(app, config) {
   // Authentication Middleware
-  const jwtChecl = jwt({
+  const jwtCheck = jwt({
     secret: jwks.expressJwtSecret({
       cache: true,
       rateLimit: true,
@@ -27,6 +27,15 @@ module.exports = function(app, config) {
     algorithm: 'RS256'
   });
 
+  // Check for an authenticated admin user
+  const adminCheck = (req, res, next) => {
+    const roles = req.user[config.NAMESPACE] || [];
+    if (roles.indexOf('admin') > -1) {
+      next();
+    } else {
+      res.status(401).send({message: 'Not authorized for admin access'});
+    }
+  };
   /*
    |--------------------------------------
    | API Routes
