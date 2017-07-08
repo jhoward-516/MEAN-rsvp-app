@@ -10,7 +10,7 @@
   background: #eee;;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  box-shadow: inset -8px 0 8px -6px rgba(0,0,0,0,0.2);
+  box-shadow: inset -8px 0 8px -6px rgba(0,0,0,0.2);
   display: none; /* deal with FOUC */
   height: 100%;
   overflow-y: auto;
@@ -115,5 +115,18 @@
   a {
     color: #fff;
     text-decoration: none;
+  }
+
+  &-authStatus {
+    color: #fff;
+    font-size: 12px;
+    line-height: 50px;
+    padding: 0 10px;
+    position: absolute;
+      right: 0;  top: 0;
+
+    a:hover {
+      text-decoration: underline;
+    }
   }
 }
