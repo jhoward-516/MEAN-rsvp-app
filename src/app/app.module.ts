@@ -1,5 +1,8 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +11,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {AuthService} from './auth/auth.service';
 import { CallbackComponent } from './pages/callback/callback.component';
+
+import { authHttpFactory } from './auth/auth-http.factory'
 
 @NgModule({
   declarations: [
@@ -23,7 +28,12 @@ import { CallbackComponent } from './pages/callback/callback.component';
   ],
   providers: [
     Title,
-    AuthService
+    AuthService,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpFactory,
+      deps: [Http, RequestOptions]
+    }
   ],
   bootstrap: [AppComponent]
 })
