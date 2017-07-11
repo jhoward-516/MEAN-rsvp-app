@@ -1,6 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { AuthHttp } from 'angular2-jwt';
 
 
@@ -13,6 +14,15 @@ import {AuthService} from './auth/auth.service';
 import { CallbackComponent } from './pages/callback/callback.component';
 
 import { authHttpFactory } from './auth/auth-http.factory'
+import { ApiService } from './core/api.service';
+import { LoadingComponent } from './core/loading.component';
+import {DatePipe} from '@angular/common';
+import {UtilsService} from './core/utils.service';
+import {FilterSortService} from './core/filter-sort.service';
+import { AdminComponent } from './pages/admin/admin.component';
+import { EventComponent } from './pages/event/event.component';
+import { EventDetailComponent } from './pages/event/event-detail/event-detail.component';
+import { RsvpComponent } from './pages/event/rsvp/rsvp.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +30,18 @@ import { authHttpFactory } from './auth/auth-http.factory'
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    CallbackComponent
+    CallbackComponent,
+    LoadingComponent,
+    AdminComponent,
+    EventComponent,
+    EventDetailComponent,
+    RsvpComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpModule
   ],
   providers: [
     Title,
@@ -33,7 +50,11 @@ import { authHttpFactory } from './auth/auth-http.factory'
       provide: AuthHttp,
       useFactory: authHttpFactory,
       deps: [Http, RequestOptions]
-    }
+    },
+    ApiService,
+    DatePipe,
+    UtilsService,
+    FilterSortService
   ],
   bootstrap: [AppComponent]
 })
