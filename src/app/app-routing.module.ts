@@ -7,6 +7,7 @@ import {AdminComponent} from './pages/admin/admin.component';
 
 import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './auth/admin.guard';
+import {EventDetailComponent} from './pages/event/event-detail/event-detail.component';
 
 
 const routes: Routes = [
@@ -15,21 +16,28 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'admin',
+    path: 'callback',
+    component: CallbackComponent
+  },
+  {
+    path: 'event/:id',
+    loadChildren: './pages/event/event.module#EventModule',
     canActivate: [
-      AuthGuard,
-      AdminGuard
-    ],
-    children: [
-      {
-        path: '',
-        component: AdminComponent
-      }
+      AuthGuard
     ]
   },
   {
-    path: 'callback',
-    component: CallbackComponent
+    path: 'admin',
+    loadChildren: './pages/admin/admin.module#AdminModule',
+    canActivate: [
+      AuthGuard,
+      AdminGuard
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ];
 

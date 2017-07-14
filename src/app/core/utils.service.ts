@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import {bootstrapItem} from '@angular/cli/lib/ast-tools';
 
 @Injectable()
 export class UtilsService {
@@ -49,4 +50,22 @@ export class UtilsService {
     return currentTab === tab;
   }
 
+  displayCount(guests: number): string {
+    // Example usage:
+    // attending this event
+    const persons = guests === 1 ? 'person' : 'people';
+    return guests + persons;
+  }
+
+  showPlusOnes(guests: number): string {
+    // If bring additional guest(s), show as "+n"
+    if (guests) {
+      return `+${guests}`;
+    }
+  }
+
+  booleanToText(bool: boolean): string {
+    // Change a boolean to 'Yes' or 'No' string
+    return bool ? 'Yes' : 'No';
+  }
 }
