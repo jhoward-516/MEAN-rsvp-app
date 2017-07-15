@@ -4,11 +4,12 @@
   <app-loading *ngIf="loading"></app-loading>
 </div>
 
+<!-- Event is over -->
+<p *ngIf="eventPast" class="card-block lead">
+  You cannot RSVP to an event that has already ended.
+</p>
+
 <ng-template [ngIf]="utils.isLoaded(loading)">
-  <!-- Event is over -->
-  <p *ngIf="eventPast" class="card-block lead">
-    You cannot RSVP to an event that has already ended
-  </p>
 
   <ng-template [ngIf]="!eventPast && rsvps">
     <!-- User has RSVPed -->
@@ -34,7 +35,7 @@
 
     <!-- No RSVP yet -->
     <div *ngIf="!userRsvp" class="card-block">
-      <p class="lead">Fill out the form below to Resond:</p>
+      <p class="lead">Fill out the form below to Respond:</p>
       <!-- @TODO: RSVP form (add new RSVP) will go here -->
     </div>
   </ng-template>
@@ -44,7 +45,7 @@
     <button (click)="toggleShowRsvps()" class="btn btn-link btn-sm">{{showRsvpsText}}</button>
   </div>
 
-  <section class="allRsvps" *ngIf="showAllRsvps">
+  <section class="allRsvps" *ngIf="showAllRsvps" [@expandCollapse]>
     <div class="card-block">
       <h3 class="card-title text-center">All RSVPs</h3>
       <p *ngIf="!rsvps.length" class="lead">There are currently no RSVPs for this event.</p>

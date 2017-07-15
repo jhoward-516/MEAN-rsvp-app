@@ -3,11 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component'
 import { CallbackComponent } from './pages/callback/callback.component';
-import {AdminComponent} from './pages/admin/admin.component';
+
 
 import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './auth/admin.guard';
-import {EventDetailComponent} from './pages/event/event-detail/event-detail.component';
+
 
 
 const routes: Routes = [

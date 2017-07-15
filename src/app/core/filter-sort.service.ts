@@ -26,7 +26,7 @@ export class FilterSortService {
     }
     const lQuery = query.toLowerCase();
     const isoDateRegex = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/; // ISO UTC
-    const dateF = dateFormat ? dateFormat: 'medium';
+    const dateF = dateFormat ? dateFormat : 'medium';
     const filteredArray = array.filter(item => {
       for (const key in item) {
         if (item.hasOwnProperty(key)) {
@@ -83,7 +83,7 @@ export class FilterSortService {
     if (!prop || !this._objArrayCheck(array)) {
       return array;
     }
-    const sortedArray = array.sort((a ,b) => {
+    const sortedArray = array.sort((a, b) => {
       const dateA = new Date(a[prop]).getTime();
       const dateB = new Date(b[prop]).getTime();
       return !reverse ? dateA - dateB : dateB - dateA;

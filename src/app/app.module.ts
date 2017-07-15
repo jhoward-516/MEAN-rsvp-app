@@ -1,4 +1,5 @@
-import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AuthModule } from './auth/auth.module';
@@ -9,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CallbackComponent } from './pages/callback/callback.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +19,7 @@ import { CallbackComponent } from './pages/callback/callback.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AuthModule,
     CoreModule

@@ -5,11 +5,14 @@ import {AuthService} from '../../../auth/auth.service';
 import {ApiService} from '../../../core/api.service';
 import {UtilsService} from '../../../core/utils.service';
 import {FilterSortService} from '../../../core/filter-sort.service';
+import {expandCollapse} from '../../../core/expand-collapse.animation';
 
 @Component({
   selector: 'app-rsvp',
+  animations: [expandCollapse],
   templateUrl: './rsvp.component.html',
-  styleUrls: ['./rsvp.component.scss']
+  styleUrls: ['./rsvp.component.scss'],
+
 })
 export class RsvpComponent implements OnInit, OnDestroy {
 
@@ -32,7 +35,7 @@ export class RsvpComponent implements OnInit, OnDestroy {
     public fs: FilterSortService) { }
 
   ngOnInit() {
-    this.footerTense = !this.eventPast ? 'plan to attend this event.' : 'attended this event.';
+    this.footerTense = !this.eventPast ? ' plan to attend this event.' : ' attended this event.';
     this._getRSVPs();
   }
 

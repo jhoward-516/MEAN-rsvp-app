@@ -53,7 +53,7 @@ export class UtilsService {
   displayCount(guests: number): string {
     // Example usage:
     // attending this event
-    const persons = guests === 1 ? 'person' : 'people';
+    const persons = guests === 1 ? ' person' : ' people';
     return guests + persons;
   }
 
