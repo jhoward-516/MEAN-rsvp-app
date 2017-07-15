@@ -52,6 +52,22 @@ export class ApiService {
       .catch(this._handleError);
   }
 
+  // POST new RSVP (login required)
+  postRsvp$(rsvp: RsvpModel): Observable<RsvpModel> {
+    return this.authHttp
+      .post(`${ENV.BASE_API}rsvp/new`, rsvp)
+      .map(this._handleSuccess)
+      .catch(this._handleError);
+  }
+
+  // PUT existing RSVP (login required)
+  editRsvp$(id: string, rsvp: RsvpModel): Observable<RsvpModel> {
+    return this.authHttp
+      .put(`${ENV.BASE_API}rsvp/${id}`, rsvp)
+      .map(this._handleSuccess)
+      .catch(this._handleError)
+  }
+
   private _handleSuccess(res: Response) {
     return res.json();
   }
