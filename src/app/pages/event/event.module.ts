@@ -6,6 +6,9 @@ import {EventComponent} from './event.component';
 import {EventDetailComponent} from './event-detail/event-detail.component';
 import {RsvpComponent} from './rsvp/rsvp.component';
 import {EVENT_ROUTES} from './event.routes';
+import { RsvpFormComponent } from './rsvp/rsvp-form/rsvp-form.component';
+import {SubmittingComponent} from '../../core/forms/submitting.component';
+
 
 @NgModule({
   imports: [
@@ -16,7 +19,9 @@ import {EVENT_ROUTES} from './event.routes';
   declarations: [
     EventComponent,
     EventDetailComponent,
-    RsvpComponent
+    RsvpComponent,
+    RsvpFormComponent,
+    SubmittingComponent
   ]
 })
 export class EventModule { }
