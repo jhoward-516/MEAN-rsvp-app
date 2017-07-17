@@ -4,6 +4,10 @@ import {CoreModule} from '../../core/core.module';
 import {RouterModule} from '@angular/router';
 import {AdminComponent} from './admin.component';
 import {ADMIN_ROUTES} from './admin.routes';
+import { CreateEventComponent } from './create-event/create-event.component';
+import { UpdateEventComponent } from './update-event/update-event.component';
+import { EventFormComponent } from './event-form/event-form.component';
+import {SubmittingComponent} from '../../core/forms/submitting.component';
 
 @NgModule({
   imports: [
@@ -12,7 +16,11 @@ import {ADMIN_ROUTES} from './admin.routes';
     RouterModule.forChild(ADMIN_ROUTES)
   ],
   declarations: [
-    AdminComponent
+    AdminComponent,
+    CreateEventComponent,
+    UpdateEventComponent,
+    EventFormComponent,
+    SubmittingComponent
   ]
 })
 export class AdminModule { }
