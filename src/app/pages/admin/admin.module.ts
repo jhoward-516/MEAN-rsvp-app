@@ -8,6 +8,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
 import { EventFormComponent } from './event-form/event-form.component';
 import {SubmittingComponent} from '../../core/forms/submitting.component';
+import { DeleteEventComponent } from './update-event/delete-event/delete-event.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {SubmittingComponent} from '../../core/forms/submitting.component';
     CreateEventComponent,
     UpdateEventComponent,
     EventFormComponent,
-    SubmittingComponent
+    SubmittingComponent,
+    DeleteEventComponent
   ]
 })
 export class AdminModule { }

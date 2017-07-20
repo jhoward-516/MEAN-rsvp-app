@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import {CommonModule, DatePipe} from '@angular/common';
-import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HeaderComponent} from '../header/header.component';
@@ -10,11 +9,12 @@ import {Title} from '@angular/platform-browser';
 import {ApiService} from './api.service';
 import {UtilsService} from './utils.service';
 import {FilterSortService} from './filter-sort.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule
@@ -32,7 +32,7 @@ import {FilterSortService} from './filter-sort.service';
     FilterSortService
   ],
   exports: [
-    HttpModule,
+    HttpClientModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,

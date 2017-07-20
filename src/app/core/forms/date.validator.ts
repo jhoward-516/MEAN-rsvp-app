@@ -23,7 +23,7 @@ export function dateValidator(): ValidatorFn {
     const now = new Date();
 
     // Validate year and month
-    if (year < now.getFullYear() || year > 3000 || month === 0 || month > 12 ){
+    if (year < now.getFullYear() || year > 3000 || month === 0 || month > 12 ) {
       return invalidObj;
     }
     // Adjust for leap years
